@@ -49,9 +49,18 @@ class Image(object):
         shapes_split = [Shape.crop(self.shapes_image) for Shape in self.big_shapes]        
         idx = 0
         for shape in shapes_split:
-            idx+=1
-            write(shape,shapedir+str(idx)+".jpg")
+            idx += 1
+            name = self.location[-5] + "_" + str(len(self.big_shapes))+ "_" + str(idx)
+            write(shape,shapedir+name+".jpg")
             #why do we output two copies of every image??
+
+    def writeLabels(self,target):
+        idx = 0
+        for shape in self.big_shapes:
+            idx+=1
+            name = self.location[-5] + "_" + str(len(self.big_shapes))+ "_" + str(idx)
+            loc = target+str(shape.label[0])+"/"+name+".jpg"
+            write(shape.cropped, loc)
 
 class Shape(object):
 

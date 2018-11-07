@@ -28,3 +28,5 @@ def kmeans(shapes,k=2):
     #assign a label to each shape
     for i in range(len(shapes)):
         shapes[i].setLabel(label[i])
+
+    return(ret,label,center)
